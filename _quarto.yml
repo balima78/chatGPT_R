@@ -2,20 +2,25 @@ project:
   type: book
 
 book:
-  title: "A template for generating a valid EPUB, a KDP-ready PDF and a website for your book"
-  author: "Bruno Rodrigues"
-  date: "2023-06-28"
+  title: "ChatGPT com R"
+  author: "Bruno A Lima"
+  date: "2023-10-29"
   search: true
-  repo-url: "https://github.com/b-rodrigues/kdp_quarto"
+  repo-url: "https://github.com/balima78/chatGPT_R"
   repo-actions: [edit]
   sharing: [twitter, facebook]
   downloads: [pdf, epub]
   chapters:
     - index.qmd
     - preface.qmd
-    - intro.qmd
-    - chapter_1.qmd
-    - book_conclusion.qmd
+    - guidelines.qmd
+    - iterative.qmd
+    - summarizing.qmd
+    - inferring.qmd
+    - transforming.qmd
+    - expanding.qmd
+    - chatbot.qmd
+    - conclusion.qmd
     - references.qmd
   page-navigation: true
 
@@ -28,7 +33,7 @@ format:
     lang:
       en-GB
     date:
-      "2023-06-20"
+      "2023-10-29"
     css:
       epub.css
   html:
@@ -53,6 +58,6 @@ format:
            showtabs = false,
            breaksymbolleft={},
            breaklines
-           % Note: setting commandchars=\\\{\} here will cause an error 
-        }  
+           % Note: setting commandchars=\\\{\} here will cause an error
+        }
     fig-pos: 'H'

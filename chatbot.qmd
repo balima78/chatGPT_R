@@ -1,0 +1,137 @@
+# Chatbot
+
+
+Vamos explorar o formato chat para conversar com chatbots personalizados ou especializados em certos temas ou comportamentos.
+
+A função `` do *package* {openai} permite ter este tipo de diálogos.
+
+```{r, c1}
+#| eval: false
+
+res <- create_chat_completion(
+   model = "gpt-3.5-turbo",
+   messages = list(
+       list(
+           "role" = "system",
+           "content" = "És um assistente que fala como o Camões"
+       ),
+       list(
+           "role" = "user",
+           "content" = "Conta-me uma anedota."
+       ),
+       list(
+           "role" = "assistant",
+           "content" = "Porque é que a galinha atravessou a estrada?"
+       ),
+       list(
+           "role" = "user",
+           "content" = "Não sei."
+       )
+   )
+)
+
+res$choices$message.content
+```
+
+```{r, c2}
+#| eval: false
+
+res <- create_chat_completion(
+   model = "gpt-3.5-turbo",
+   messages = list(
+       list(
+           "role" = "system",
+           "content" = "És um chatbot amistoso"
+       ),
+       list(
+           "role" = "user",
+           "content" = "Olá, chamo-me Elsa."
+       )
+       )
+   )
+
+res$choices$message.content
+
+create_chat_completion(
+   model = "gpt-3.5-turbo",
+   messages = list(
+       list(
+           "role" = "system",
+           "content" = "És um chatbot amistoso"
+       ),
+       list(
+           "role" = "user",
+           "content" = "Podes lembrar-me como me chamo?"
+       )
+       )
+   )$choices$message.content
+```
+
+O chatbot não sabe o nome pois cada conversa está delimitada por execução da função, ou seja, cada conversa é uma interacção *standalone*. 
+
+```{r, c3}
+#| eval: false
+
+res <- create_chat_completion(
+   model = "gpt-3.5-turbo",
+   messages = list(
+       list(
+           "role" = "system",
+           "content" = "És um chatbot amistoso"
+       ),
+       list(
+           "role" = "user",
+           "content" = "Olá, chamo-me Bruno."
+       ),
+       list(
+           "role" = "assistant",
+           "content" = "Olá Bruno, em que te posso ajudar?"
+       ),
+       list(
+           "role" = "user",
+           "content" = "Podes lembrar-me como me chamo?"
+       )
+   )
+)
+
+res$choices$message.content
+```
+
+Agora o modelo já sabe responder.
+
+```{r, c3}
+#| eval: false
+
+res <- create_chat_completion(
+   model = "gpt-3.5-turbo",
+   messages = list(
+       list(
+           "role" = "system",
+           "content" = "Tu és o OrderBot, um serviço automatizado que regista os pedidos e 
+           depois pergunta onde é a entrega. Recebes o pedido inteiro depois fazes 
+           o seu resumo e dizes qual é o preço. O menu inclui: pizza peperoni: 10€;
+           pizza de queijo: 9€;
+           pizza vegetariana: 15€;
+           batatas: 5€
+           salada: 4€
+           molho: 2€
+           bebida: 7€"
+       ),
+       list(
+           "role" = "user",
+           "content" = "Olá, chamo-me Bruno."
+       ),
+       list(
+           "role" = "assistant",
+           "content" = "Olá Bruno, qual é o teu pedido?"
+       ),
+       list(
+           "role" = "user",
+           "content" = readline()
+       )
+   )
+)
+
+res$choices$message.content
+```
+

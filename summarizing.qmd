@@ -1,0 +1,155 @@
+# Summarizing
+
+Resumir texto focando tópicos específicos.
+
+
+```{r, s0}
+#| eval: false
+rev_produto <- "Comprei este panda de peluxe no aniversário da minha filha, 
+ela adora-o e leva-o para todo lado e leva para todo lugar. 
+É macio e muito fofo, o seu rosto tem um ar amigável. 
+Ainda assim é um pouco pequeno para o preço que paguei. 
+Eu acho que pode haver outras opções maiores para o mesmo preço. 
+Chegou um dia antes do esperado, então eu mesmo pude brincar com ele antes de lho entregar."
+```
+
+Resume com um limite de palavras / frases / caracteres.
+
+```{r, s1}
+#| eval: false
+prompt0 <- paste("A tua tarefa é gerar um resumo curto duma revisão de produto dum site de e-commerce.
+                 Resume a revisão do produto entre plicas triplas num máximo de 30 palavras.
+                 Revisão: ''' ", rev_produto, " ''' ")
+
+resposta <- get_completion(prompt0)
+
+resposta
+```
+
+Resume com foco no transporte e entrega.
+
+```{r, s2}
+#| eval: false
+prompt1 <- paste("A tua tarefa é gerar um resumo curto duma revisão de produtodum site de e-commerce.
+                 Resume a revisão entre plicas triplas num máximo de 30 palavras, 
+                 com o foco em qualquer mençao no transporte e entrega do produto.
+                 Revisão: ''' ", rev_produto, " ''' ")
+
+resposta <- get_completion(prompt1)
+
+resposta
+
+```
+
+Resume com foco no preço e valor
+
+```{r, s3}
+#| eval: false
+prompt2 <- paste("A tua tarefa é gerar um resumo curto duma revisão de produtodum site de e-commerce.
+                 Resume a revisão entre plicas triplas num máximo de 30 palavras, 
+                 com o foco em qualquer mençao ao preço e e valor percepcionado.
+                 Revisão: ''' ", rev_produto, " ''' ")
+
+resposta <- get_completion(prompt2)
+
+resposta
+
+```
+
++ o resumo inclui topicos que não estão relacionados copm o focos definido.
+
+Vamos tentar 'extrair' em vez de 'resumir'
+
+```{r, s4}
+#| eval: false
+prompt3 <- paste("A tua tarefa é extrair informação relevante duma revisão de produto dum site de e-commerce.
+                 Extrai, da revisão do produto entre plicas triplas que se segue, 
+                 informação relevante. Máximo de 30 palavras.
+                 Revisão: ''' ", rev_produto, " ''' ")
+
+resposta <- get_completion(prompt3)
+
+resposta
+```
+
+Resumir multiplas revisões
+
+```{r, s5}
+#| eval: false
+rev1 <- rev_produto
+
+# revisão de um candeeiro
+rev2 <- "Precisava de uma luminária bonita para meu quarto, 
+e essa tinha armazenamento adicional e um preço não muito alto. 
+Recebi rápido - chegou em 2 dias. A corda para a lâmpada quebrou 
+durante o transporte e a empresa felizmente enviei um novo. 
+Chegou em poucos dias depois. Foi fácil de montar. Então eu tive uma parte faltando,
+entrei em contato com a assistência deles e eles muito rapidamente me deram a peça que faltava! 
+Parece-me ser uma grande empresa que se preocupa com seus clientes e produtos."
+
+# revisão de uma escova de dentes electrica
+rev3 <- "Meu higienista dental recomendou uma escova de dentes elétrica, por isso que comprei esta. 
+A duração da bateria parece ser bastante impressionante até agora. 
+Após o carregamento inicial e deixando o carregador conectado durante a primeira semana para 
+condicionar a bateria, desliguei o carregador e tenho usado para escovar duas vezes ao dia 
+nas últimas 3 semanas, tudo com a mesma carga. 
+Mas a cabeça da escova de dentes é muito pequena. Já vi escovas de dentes para bebês maiores que esta
+Eu gostaria que a cabeça fosse maior com diferentes cerdas de comprimento para ficarem melhor entre os dentes porque este não. No geral, se você conseguir este em torno de US $ 50, é um bom negócio. 
+As cabeças de reposição são muito caras, mas você pode
+obter genéricos com preços mais razoáveis. 
+Essa escova de dentes me faz sentir como se tivesse ido ao dentista diariamente. 
+Meus dentes parecem brilhantes e limpos!"
+
+# revisão de triturador
+rev4 <- "Então, eles ainda tinham o sistema de 17 peças em venda por cerca de 49 dólares no mês de novembro, 
+cerca de metade do preço, mas, por alguma razão (chamem-lhe manipulação de preços) 
+por volta da segunda semana de dezembro, os preços subiram todos 
+para um valor entre 70 e 89 dólares pelo mesmo 
+sistema. E o sistema de 11 peças subiu cerca de 10 dólares ou 
+portanto, no preço, também em relação ao preço de venda anterior de 29 dólares.
+Parece bem, mas se olharmos para a base, a parte
+onde a lâmina encaixa no sítio não parece tão boa
+como nas edições anteriores de há uns anos atrás, mas eu 
+tenciono ser muito delicado com ela (por exemplo, eu esmago 
+itens muito duros como feijão, gelo, arroz, etc. no  
+liquidificador primeiro e depois pulverizo-os no tamanho da porção que
+quero na liquidificadora e depois mudo para a lâmina de bater 
+para obter uma farinha mais fina, e utilizar a lâmina de corte transversal 
+primeiro quando faço batidos, depois uso a lâmina plana 
+se precisar de uma farinha mais fina/menos polposa). Dica especial para fazer batidos, 
+corte finamente e congele os frutos e 
+legumes (se usar espinafres, amoleça ligeiramente os  
+espinafres e depois congelar até estarem prontos a usar - e se estiver a fazer 
+sorvete, use um processador de alimentos de tamanho pequeno a médio)  
+se planeia usar dessa forma pode evitar adicionar tanto 
+gelo, se for o caso - ao fazer o seu smoothie. 
+Passado cerca de um ano, o motor começou a fazer um ruído estranho. 
+Liguei para o serviço de apoio ao cliente, mas a garantia já tinha expirado, 
+pelo que tive de comprar outro. Para sua informação: 
+A qualidade geral deste tipo de produtos tem vindo a diminuir, pelo que 
+eles estão a contar com o reconhecimento da marca e 
+fidelidade do consumidor para manter as vendas. Recebi-o em cerca de
+dois dias."
+
+revisoes <- c(rev1, rev2, rev3, rev4)
+```
+
+
+Aplicar um *loop*
+
+```{r, s6}
+#| eval: false
+for (i in 1:length(revisoes)){
+  prompt <- paste("A tua tarefa é extrair informação relevante duma revisão de produto dum site de e-commerce 
+  para o departamento de expedição.
+                 Extrai, da revisão do produto entre plicas triplas que se segue, 
+                 informação relevante. Máximo de 20 palavras.
+                 Revisão: ''' ", revisoes[i], " ''' ")
+
+resposta <- get_completion(prompt)
+
+cat(i)
+print(resposta)
+} 
+```
+

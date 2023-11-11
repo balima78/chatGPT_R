@@ -1,0 +1,46 @@
+# Expanding
+
+Vamos gerar respostas automáticas
+
+```{r, e1}
+#| eval: false
+
+sente <- 'negativo'
+
+revisao <- "Afinal, eles ainda tinham o sistema de 17 peças à 
+venda por cerca de 49 dólares no mês de novembro, cerca de metade do preço, 
+mas, por alguma razão (chamem-lhe manipulação de preços) por volta da segunda semana de dezembro, 
+os preços subiram todos para um valor entre 70 e 89 dólares pelo mesmo sistema. 
+E o sistema de 11 peças subiu cerca de 10 dólares, também em relação ao preço de venda anterior de 29 dólares.
+Parece bem, mas se olharmos para a base, a parte onde a lâmina encaixa no sítio não parece tão boa
+como nas edições anteriores de há uns anos atrás, mas eu tenciono ser muito delicado com ela 
+(por exemplo, eu esmago itens muito duros como feijão, gelo, arroz, etc. no liquidificador primeiro e depois pulverizo-os no tamanho da porção que quero na liquidificadora 
+e depois mudo para a lâmina de bater para obter uma farinha mais fina, 
+e utilizo a lâmina de corte transversal primeiro quando faço batidos, 
+depois uso a lâmina plana se precisar de uma farinha mais fina/menos polposa). 
+Dica especial para fazer batidos, corte finamente e congele os frutos e legumes 
+(se usar espinafres, amoleça ligeiramente os espinafres e depois congelar até estarem prontos a usar 
+- e se estiver a fazer sorvete, use um processador de alimentos de tamanho pequeno a médio) 
+dessa forma pode evitar adicionar muito gelo, ao fazer o seu smoothie. 
+Passado cerca de um ano, o motor começou a fazer um ruído estranho. 
+Liguei para o serviço de apoio ao cliente, mas a garantia já tinha expirado, 
+pelo que tive de comprar outro. Para sua informação: 
+A qualidade geral deste tipo de produtos tem vindo a diminuir, pelo que 
+eles estão a contar com o reconhecimento da marca e 
+fidelidade do consumidor para manter as vendas. 
+Recebi-o em cerca de dois dias." 
+
+prompt0 <- paste("Tu és um assistente AI de serviço ao cliente. A tua tarefa é mandar um e-mail de resposta
+                 para um importante cliente. O email do cliente está delimitado por plicas triplas.
+                 Se o < sentimento > for positivo ou neutro, agradece o comentário. Se o sentimento for negativo,
+                 pede desculpa e sugere que podem contar com o serviço ao cliente.
+                 Garante que fazes referencia a especificidade do comentário. 
+                 Escreve o email num tom profissional e sintético.
+                 Assina o e-mail como `Agente AI ao cliente`. Comentário do cliente: '''",
+                 revisao, " '''; Sentimento do comentário: <", sente, ">")
+
+resposta <- get_completion(prompt0)
+
+resposta
+```
+

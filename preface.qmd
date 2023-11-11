@@ -1,1 +1,26 @@
-# Preface
+# Prefácio
+
+Este tutorial tem por base o MOOC [ChatGPT Prompt Engineering for Developers](https://learn.deeplearning.ai/).
+
+As instruções que naquele *short course* são apresentadas com exemplos em *python*, aqui são replicadas com recurso à linguagem **R**.
+
+O *package* [{openai}](https://cloud.r-project.org/web/packages/openai/index.html) é usado para o R aceder à API do chatGPT e obter as respontas pretendidas.
+
+Antes de mais temos de definir a nossa chave API dada pelo OpenAI tal como descrito no sitio do [openai](https://irudnyts.github.io/openai/):
+
+```{r}
+#| eval: false
+
+Sys.setenv(
+    OPENAI_API_KEY = 'sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+)
+
+```
+
+Podemos deferir dois tipos de de *Large Language Models* (LLM):
+
++ Base LLM - prevê a próxima palavra, tem por base texto como dados de treino;
+
++ Instruction Tuned LLM - Tenta seguir instruções, *fine-tune* com instruções e em tentativas bem sucedidas no seguimento dessas instruções. *Reinforcement Learning with Human Feedback* (RLHF)
+
+

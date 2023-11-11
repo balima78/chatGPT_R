@@ -1,0 +1,276 @@
+# Guidelines
+
+Com o *package* {openai}, começamos por definir uma função de ajuda para usar *prompts* e gerar *outputs*. Nestes exemplos usaremos o modelo `gpt-3.5-turbo` do OpenAI e o [chat completions endpoint.](https://platform.openai.com/docs/guides/chat).
+
+```{r, g_inicio}
+library(openai)
+
+get_completion <- function(prompt, model = "gpt-3.5-turbo", ...){
+  res <- create_chat_completion(
+    model = model,
+    messages = list(
+      list(
+        "role" = "user",
+        "content" = prompt
+      )
+    ), ...
+  )
+
+  return(res$choices$message.content)
+}
+```
+
+
+## Princípios para *prompting*
+
+1. Escrever instruções claras e específicas;
+1. Dar tempo ao modelo para pensar.
+
+### Escrever instruções claras e específicas;
+
+#### Tática 1: 
+
+Usar delimitadores para distinguir de forma clara diferentes partes do *input*:
+
++ delimitadores como: ```, "", ---, < >, <tag> <ta/g>, :
+
+```{r, g0}
+#| eval: false
+texto <- "Devemos expressar com instruções claras e específicas o que pretendemos do modelo. 
+Isto guiará o modelo para o output desejado e reduzirá as probabilidade de 
+receber respostas incorrectas ou irrelevante. Muitas vezes, 
+prompts mais largos providenciam um contexto para o modelo o que pode gerar outputs mais relevantes e detalhados"
+
+prompt0 <- paste('Resume o texto delimitado por acentos triplos numa única frase curta: 
+                 ```', texto, '``')
+
+resposta <- get_completion(prompt0)
+
+resposta
+
+```
+O uso de delimitadores é também uma forma de garantir que um terceiro utilizador 
+não dá instruções que condicionem um determinado tipo de resposta que queremos obter.
+Assim, também é possível fazer funções auxiliares com um *prompt* pré-definido.
+
+#### Táctica 2: 
+
+Pedir um *oputput* estruturado
+
++ JSON, HTML
+
+```{r, g1}
+#| eval: false
+prompt1 <- "Gera uma lista de três livros inventados com os seus autores e géneros respectivos. 
+Devolve um JSON com as seguintes chaves: book_id, title, author, genre" 
+
+resposta <- get_completion(prompt1)
+
+resposta
+```
+
+#### Táctica 3: 
+
+Pedir ao modelo para *checkar* se as condições foram satisfeitas.
+
+```{r, g2}
+#| eval: false
+texto_2 <- "fazer uma taça de chá é fácil! Primeiro precisamos de por água a ferver. 
+Enquanto isto acontece, pegamos numa taça e colocamos uma saqueta de chá. 
+Quando a água estiver quente vertemos sobre a saqueta de chá. 
+Depois de ums minutos podemos retirar a saqueta. Se quisermos, 
+podemos adicionar açucar ou leite para lhe dar mais sabor. E é só. 
+Podemos agora desfrutar de um delicioso chá."
+
+prompt2 <- paste("Vou dar-te um texto delimitado por triplas pelicas. 
+Se tiver uma sequencia de instruções, re-escreve essas ionstruções no seguinte formato:
+                 passo 1 - ...
+                 passo 2 - ...
+                 ...
+                 passo n - ...
+                 Se o texto não tiver uma sequência de instruçõpes então escreve 
+'Não há passos a seguir!'
+''' ", texto_2, "'''")
+
+resposta <- get_completion(prompt2)
+
+resposta
+
+```
+```{r, g3}
+#| eval: false
+texto_3 <- "Hoje, o sol brilha e os pássaros cantam. Está um bonito dia para passear no parque. 
+As flores rebentam e as arvores balanceiam com o vento. As pessoas disfrutam do bom tempo."
+
+prompt3 <- paste("Vou dar-te um texto delimitado por triplas pelicas. Se tiver uma sequencia de instruções, re-escreve essas ionstruções no seguinte formato:
+                 passo 1 - ...
+                 passo 2 - ...
+                 ...
+                 passo n - ...
+                 Se o texto não tiver uma sequ-~encia de instruçõpes então escreve 'Não há passos a seguir!'
+                 ''' ", texto_3, "'''")
+
+resposta <- get_completion(prompt3)
+
+resposta
+
+```
+
+#### Táctica 4: 
+
+Frases curtas
+
+```{r, g4}
+#| eval: false
+prompt4 <- "Deves responder de forma consistente com o estilo:
+<criança>: Ensina-me sobre paciência.
+<avô>: O rio que escava o vale mais fundo começa numa modesta nascente; 
+a maior sinfonia começa numa única nota; o tapete mais intrincado começa só com um fio.
+<criança>: Ensina-me sobre resistência."
+
+resposta <- get_completion(prompt4)
+
+resposta
+
+```
+
+### Dar tempo ao modelo para pensar;
+
+#### Tática 1: 
+
+Especificar os passos necessários para completar a tarefa.
+
+```{r, g5}
+#| eval: false
+texto_4 <- "Numa charmosa aldeia, os irmãos João e José tinham a tarefe de recolher 
+água duma poço numa colina. Enquanto subima, cantando com alegria, a má sorte atinguiu João 
+que tropeçou numa pedra e cai colina abaixo seguido pelo José. 
+Embora combalidos regressaram a casa para braços reconfortantes. 
+Apesar do precalço os seus espiritos aventurosos permaneceram intactos e eles continuaram a explorar com gosto."
+
+prompt5 <- paste("completa a seguinte tarefa:
+                 1 - resume o texto que está entre plicas triplas numa só frase;
+                 2 - traduz o resumo para francês;
+                 3 - lista cada nome do resumo em francês;
+                 4 - devolve um objacto JSON com as chaves: french_summary, num_names.
+                 separa cada resposta com um paragrafo. ''' ", texto_4, "''' ")
+
+resposta <- get_completion(prompt5)
+
+resposta
+
+```
+Pedir o output num formato específico.
+
+```{r, g6}
+#| eval: false
+prompt6 <- paste("A tuas tarefas são:
+                1 - resume o texto entre plicas triplas, numa frase,
+                2 - traduz o resumo para francês;
+                3 - lista cada nome do resumo em francês;
+                4 - devolve um objacto JSON com as chaves: french_summary, num_names.
+                Usa o seguinte formato:
+Text: <texto a resumir>
+Summary: <resumo>
+Translation: <resumo traduzido>
+Names: <lista de nomes do resumo em francês>
+Output JSON: <json com resumo e nomes>
+
+texto: ''' ", texto_4, "''' ")
+
+resposta <- get_completion(prompt6)
+
+resposta
+```
+
+#### Tática 2:
+
+Instruir o modelo a trabalhar a sua própria solução antes de se precipitar numa conclusão.
+
+```{r, g7}
+#| eval: false
+prompt7 <- "Determina se a solução do aluno é correcta.
+questão: estou a construir uma instalação de energia solar e preciso ajuda na parte financeira.
+- preço do terreno 100€ / metro quadrado
+- paineis solares a 250€ / metro quadrado
+- contrato de manutenção que custa 100k € e mais 10€ / metro quadrado
+Qual é o custo total para o primeiro ano em produção em função do metro quadrado?
+solução do aluno: Seja x o tamanho da instalação em metros quadrados:
+1. custo do terreno: 100x
+2. custo do painel solar: 250x
+3. custo da manutenção: 100000 + 100x
+custo total: 100x + 250x + 100000 + 100x = 450x + 100000"
+
+resposta <- get_completion(prompt7)
+
+resposta
+
+```
+
+De notar que a resposta do aluno não é correcta. 
+
+Podemos corrigir isto, instruindo o modelo para primeiro arranjar uma solução.
+
+```{r, g8}
+#| eval: false
+prompt8 <- "A tua tarefa é determinar se a solução do aluno é correcta.
+Para resdolver o problema segue os passos:
+- primeiro, arranja a tua própria solução para o problema;
+- depois, compara a tua solução com a solução do aluno e avalia se a solução do aluno é correcta. 
+Não decidas se a solução do aluno é correcta antes de tu resolveres o problema.
+Usa o seguinte formato:
+Questão:
+< aqui a questão >
+Solução do aluno:
+< aqui a solução do aluno >
+Solução correcta:
+< aqui a solução correta e os passos usados para chegar a esta solução >
+Nota do aluno:
+< correcto ou incorrecto >
+
+Questão:
+< estou a construir uma instalação de energia solar e preciso ajuda na parte financeira.
+- preço do terreno 100€ / metro quadrado
+- paineis solares a 250€ / metro quadrado
+- contrato de manutenção que custa 100k € e mais 10€ / metro quadrado
+Qual é o custo total para o primeiro ano em produção em função do metro quadrado? >
+Solução do aluno:
+< Seja x o tamanho da instalação em metros quadrados:
+1. custo do terreno: 100x
+2. custo do painel solar: 250x
+3. custo da manutenção: 100000 + 100x
+custo total: 100x + 250x + 100000 + 100x = 450x + 100000 >
+Solução correcta:
+"
+resposta <- get_completion(prompt8)
+
+resposta
+
+```
+
+### Limitações do modelo: alucinações
+
+Respostas plausíveis mas que são falsas. 
+
+Prozis é uma companhia real mas o nome do produto não é.
+
+```{r, g9}
+#| eval: false
+prompt9 <- "Fala-me sobre AeroGlide UltraSlim Smart Toothbrush vendida pela Prozis. 
+Usa no máximo 500 caracteres."
+
+resposta <- get_completion(prompt9)
+
+resposta
+```
+Para evitarmos ou tentarmos controlar estas 'alucinações' podemos pedir que nos sejam dadas referências e fontes usadas para a respostas.
+
+```{r, g10}
+#| eval: false
+prompt9 <- "Fala-me sobre AeroGlide UltraSlim Smart Toothbrush vendida pela Prozis. 
+Usa no máximo 500 caracteres. Identifica as fontes usadas para construir esta resposta."
+
+resposta <- get_completion(prompt9)
+
+resposta
+```

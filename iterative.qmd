@@ -1,0 +1,173 @@
+# Iterative
+
+Desenvolvimento com *prompts* iterativos.
+
+![](images/iterative.jpg)
+
++ começamos com um *prompt* claro e específico;
++ analisamos porque é que o resultado não dá o *output* desejado;
++ afinamos a ideia e o *prompt*;
++ repetimos.
+
+
+Gerar uma descrição de marketing a partir de uma ficha informativa do produto.
+
+```{r, it1}
+#| eval: false
+ficha_produto <- "VISÃO GERAL
+- Parte de uma bela família de móveis de escritório inspirados em meados do século,
+incluindo armários de arquivo, escrivaninhas, estantes de livros, mesas de reunião e muito mais.
+- Diversas opções de cores de casca e acabamentos de base.
+- Disponível com estofamento traseiro e frontal de plástico (SWC-100)
+ou estofamento completo (SWC-110) em 10 opções de tecido e 6 opções de couro.
+- As opções de acabamento da base são: aço inoxidável, preto fosco,
+branco brilhante ou cromado.
+- A cadeira está disponível com ou sem braços.
+- Adequado para ambientes domésticos ou empresariais.
+- Qualificado para uso contratual.
+
+CONSTRUÇÃO
+- Base em alumínio revestido a plástico com 5 rodas.
+- Ajuste pneumático da cadeira para facilitar a ação de subir/baixar.
+
+DIMENSÕES
+- LARGURA 53 CM | 20,87”
+- PROFUNDIDADE 51 CM | 20,08”
+- ALTURA 80 CM | 31,50”
+- ALTURA DO ASSENTO 44 CM | 17,32”
+- PROFUNDIDADE DO ASSENTO 41 CM | 16,14”
+
+OPÇÕES
+- Opções de rodízios para piso macio ou duro.
+- Duas opções de densidades de espuma de assento:
+ médio (1,8 lb/ft3) ou alto (2,8 lb/ft3)
+- Apoios de braço em PU sem braços ou com 8 posições
+
+MATERIAIS
+PLANADOR DE BASE DE CONCHA
+- Alumínio fundido com revestimento de nylon modificado PA6/PA66.
+- Espessura da casca: 10 mm.
+ASSENTO
+- Espuma HD36
+
+PAÍS DE ORIGEM
+- Itália"
+
+prompt0 <- paste("A tua tarefa é ajudar a equipa de markting a criar a descrição 
+para um website de vendas com base numa ficha de produto.
+
+Escreve a descrição do produto com base na informação fornecida 
+nas especificações técnivas delimitadas por triplas plicas.
+
+Especificaações técnicas: ''' ", ficha_produto, "''' ")
+
+resposta <- get_completion(prompt0)
+
+resposta
+```
+
+## Problema 1: o texto é muito longo
+
++ limita o número de palavras /frases / caracteres
+
+```{r, it2}
+#| eval: false
+prompt1 <- paste("A tua tarefa é ajudar a equipa de markting a criar a descrição 
+para um website de vendas com base numa ficha de produto.
+
+Escreve a descrição do produto com base na informação fornecida 
+nas especificações técnivas delimitadas por triplas plicas.
+
+Usa no máximo 50 palavras.
+
+Especificações técnicas: ''' ", ficha_produto, "''' ")
+
+resposta <- get_completion(prompt1)
+
+resposta
+```
+
+
+## Problema 2: o texto foca os detalhes errados
+
++ pedir para fiocar nos aspecvtos relevantes para a audiência
+
+```{r, it3}
+#| eval: false
+prompt2 <- paste("A tua tarefa é ajudar a equipa de markting a criar a descrição 
+para um website de vendas com base numa ficha de produto.
+
+Escreve a descrição do produto com base na informação fornecida 
+nas especificações técnivas delimitadas por triplas plicas.
+
+A descrição tem como destinatário os revendedores de miobiliário pelo que deve ser técnica
+na sua natureza e focar os materiais que fazem o produto.
+
+Usa no máximo 50 palavras.
+
+Especificações técnicas: ''' ", ficha_produto, "''' ")
+
+resposta <- get_completion(prompt2)
+
+resposta
+```
+
+Incluir identificação do produto
+
+```{r, it4}
+#| eval: false
+prompt3 <- paste("A tua tarefa é ajudar a equipa de markting a criar a descrição 
+para um website de vendas com base numa ficha de produto.
+
+Escreve a descrição do produto com base na informação fornecida 
+nas especificações técnivas delimitadas por triplas plicas.
+
+A descrição tem como destinatário os revendedores de miobiliário pelo que deve ser técnica
+na sua natureza e focar os materiais que fazem o produto.
+
+No final da descrição, incluir o ID do produto da especificação técnica.
+
+Usa no máximo 50 palavras.
+
+Especificações técnicas: ''' ", ficha_produto, "''' ")
+
+resposta <- get_completion(prompt3)
+
+resposta
+```
+
+## Problema 3: a descrição precisa duma tabela de dimesões
+
++ pedir para extrair informação e organizá-la numa tabela.
+
+```{r, it5}
+#| eval: false
+prompt4 <- paste("A tua tarefa é ajudar a equipa de markting a criar a descrição 
+para um website de vendas com base numa ficha de produto.
+
+Escreve a descrição do produto com base na informação fornecida 
+nas especificações técnivas delimitadas por triplas plicas.
+
+A descrição tem como destinatário os revendedores de miobiliário pelo que deve ser técnica
+na sua natureza e focar os materiais que fazem o produto.
+
+No final da descrição, incluir o ID do produto da especificação técnica.
+
+Usa no máximo 50 palavras.
+
+Depois da descrição, incluir uma tabela que dá as dimensões do produto. 
+A tabela deve ter duas colunas. Na primeira coluna incluir o nome das dimensões.
+Na segunda coluna incluir as medidas apenas em centimetros.
+
+Dá à tabela o título 'Dimensões do produto'.
+
+Formata tudocomo HTML para que possa ser usado num website.
+Coloca a descrição num elemento <div>.
+
+Especificações técnicas: ''' ", ficha_produto, "''' ")
+
+resposta <- get_completion(prompt4)
+
+resposta
+```
+

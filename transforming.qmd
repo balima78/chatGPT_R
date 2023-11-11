@@ -1,0 +1,138 @@
+# Transforming
+
+Um LLM pode também ser usado para em tarefas de transformação de texto, como sejam a tradução, correcção gramatical, ajustar o tom e converter formatos.
+
+## Tradução
+
+O chatGPT está treinado com fontes de muitas línguas diferentes. Isto permite ao modelo fazer traduções.
+
+```{r, t1}
+#| eval: false
+
+prompt0 <- "Traduz o seguinte texto para italiano: ''' Olá, eu gostava de comprar um triturador. '''"
+
+resposta <- get_completion(prompt0)
+
+resposta
+
+```
+
+
+```{r, t2}
+#| eval: false
+
+prompt1 <- "Diz-me em que linguagem está isto: 'Combien coûte le lampadaire?' "
+
+resposta <- get_completion(prompt1)
+
+resposta
+
+```
+
+```{r, t3}
+#| eval: false
+
+prompt2 <- "Traduz o seguinte texto para espanhol, 
+italiano e ingles de pirata: '''Quero encomendar uma bola de basketball.''' "
+
+resposta <- get_completion(prompt2)
+
+resposta
+
+```
+
+Tradução de múltiplas frases em diferente línguas.
+
+```{r, t4}
+#| eval: false
+
+mensagens <- c("La performance du système est plus lente que d'habitude.",  
+               "Mi monitor tiene píxeles que no se iluminan.",
+               "Il mio mouse non funziona",
+               "Mój klawisz Ctrl jest zepsuty",
+               "我的屏幕在闪烁")
+
+for (i in 1: length(mensagens)){
+  prompt3 <- paste("Numa só palavra, diz-me em que lingua está a frase:", mensagens[i])
+  lingua <- get_completion(prompt3)
+  resposta <- get_completion(paste("traduz para português:", mensagens[i]))
+  
+  print(paste("A língua original é:", lingua,".\n",
+              "A tradução é:", resposta))
+  
+}
+
+```
+
+## Modificação do tom
+
+De acordo com a nossa audiência podemos definir o nosso tom.
+
+```{r, t5}
+#| eval: false
+
+frase <- "Mano, este é o Zé, tipo vê só as cenas desta lamparina!" 
+
+prompt4 <- paste("Traduz a frase do calão para uma linguagem formal de negócio:", frase)
+
+resposta <- get_completion(prompt4)
+
+resposta
+
+```
+## Conversão de formato
+
+```{r, t6}
+#| eval: false
+
+df <- data.frame(nome = c('Sérgio','Bruno','José'),
+                 email = c('sergio.cenas@gmail.com','b2578@gmail.com','zedecima@gmail.com'))
+
+prompt5 <- paste("Traduz o data.frame para uma tabela HTML:", 
+                df)
+resposta <- get_completion(prompt5)
+
+resposta
+
+```
+
+## Correcçaõ ortográfica
+
+```{r, t7}
+#| eval: false
+
+frases <- c('A rapariga com os caes brancos e pretos ter uma bola.',
+            'A Yolanda tem o seu caderno.',
+            'Foi ser um dia longo. À peixe para jantar.',
+            'Esta tem erros gramalticais.',
+            'Descancar é muito mais melhor bom.'
+            )
+
+for(i in 1:length(frases)){
+  prompt6 <- paste("Corrige a frase entre plicas triplas e reescreve-a de forma correcta. 
+                 Se não houver nenhum erro apenas devolve: 'Não encontrei erros!': '''", frases[i], "'''")
+  resposta <- get_completion(prompt6)
+  print(paste("Frase", i, ":", resposta))
+}
+
+```
+
+
+```{r, t7}
+#| eval: false
+
+texto <- "Comprei isto para a minha filha no seu aniversário, porque ela está sempre a tirar
+os meus do meu quarto.  Sim, os adultos também gostam de pandas.  Ela leva-o
+para todo o lado com ela, porque é super macio e giro.  Uma das orelhas  
+é um pouco mais pequena do que a outra, e acho que não foi feito para ser assimétrico. 
+É um pouco pequeno para o que paguei por ele. No entanto, penso que pode haver outras opções que sejam maiores pelo o mesmo preço.  Chegou um dia antes do previsto, por isso pude brincar com ele antes de o dar à minha filha."
+
+prompt7 <- paste("Reve e corrige a revisão que está entre plicas triplas. Torna-a mais convincente.
+                 Assegura que segue o guia de estilo APA e que se destina a um leitor avançado. 
+                 O output deve estar em formato markdown: ''' ", texto, "'''")
+
+resposta <- get_completion(prompt7)
+
+resposta
+
+```

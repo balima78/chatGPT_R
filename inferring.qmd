@@ -1,0 +1,174 @@
+# Inferring
+
+Inferir sentimentos e tópicos a partir de revisão de produtos.
+
+```{r, in0}
+#| eval: false
+
+rev_lamp <- "Precisava de um candeeiro bonito para o meu quarto, e este tinha 
+arrumação adicional e um preço não muito elevado. 
+Recebi-o rapidamente.  O fio do nosso candeeiro partiu-se durante o trasnporte 
+e a empresa enviou de bom grado um novo. Também chegou em poucos dias depois. 
+Foi fácil de montar.  Faltava-me uma peça, por isso contactei o apoio 
+e eles arranjaram-me muito rapidamente a peça que faltava! 
+A Lumina parece-me ser uma grande empresa que se preocupa com os seus clientes e produtos!!"
+
+```
+
+## Sentimento (positivo / negativo)
+
+```{r, in1}
+#| eval: false
+
+prompt0 <- paste("Qual o sentimento da seguite revisão de produto delimitada por plicas triplas?
+                 Dá a resposta numa unica palavra: positivo ou negativo.
+                 Revisão: ''' ", rev_lamp, "'''")
+
+resposta <- get_completion(prompt0)
+
+resposta
+
+```
+
+## Identifica tipos de emoções
+
+```{r, in2}
+#| eval: false
+
+prompt1 <- paste("Identifica uma lista de emoções que o escritor da seguinte revisão expressou.
+Não incluas mais de 5 items na lista. Formata a tua resposta como uma lista de palavras separadas por virgulas.
+                 Revisão: ''' ", rev_lamp, "'''")
+
+resposta <- get_completion(prompt1)
+
+resposta
+
+```
+
+## Identifica raiva
+
+```{r, in3}
+#| eval: false
+
+prompt2 <- paste("O escritor da seguinte revisão está com raiva?. 
+A  revisão está delimitada por plicas triplas. A tua resposta deve ser: sim ou não.
+                 Revisão: ''' ", rev_lamp, "'''")
+
+resposta <- get_completion(prompt2)
+
+resposta
+
+```
+## Extrai classificadores
+
+Extrai os nomes do produto e da companhia a partir das revisão.
+
+```{r, in4}
+#| eval: false
+
+prompt3 <- paste("Identifica os seguintes items da revisão:
+- Produto comprado;
+- Empresa que o produziu. 
+A  revisão está delimitada por plicas triplas. 
+A tua resposta deve ser uma tabela markdown com as colunas: Produto e Empresa.
+Se a informação não existir usa o valor NA. A tua resposta deve ser o mais curta possível.
+
+                 Revisão: ''' ", rev_lamp, "'''")
+
+resposta <- get_completion(prompt3)
+
+resposta
+
+```
+
+## Multi task
+
+Fazer várias tarefas ao mesmo tempo
+
+```{r, in5}
+#| eval: false
+
+prompt4 <- paste("Identifica os seguintes items da revisão:
+- Semtimento (positivo ou negativo);
+- O revisor está com raiva?
+- Produto comprado;
+- Empresa que o produziu. 
+A  revisão está delimitada por plicas triplas. 
+A tua resposta deve ser uma tabela markdown com as colunas: Sentimento, Raiva, Produto e Empresa.
+Se a informação não existir usa o valor 'NA'. A tua resposta deve ser o mais curta possível.
+O valor para Raiva deve ser booleano.
+
+                 Revisão: ''' ", rev_lamp, "'''")
+
+resposta <- get_completion(prompt4)
+
+resposta
+
+```
+
+
+## Inferir tópicos
+
+```{r, in6}
+#| eval: false
+
+estoria <- "Num inquérito recente realizado pelo governo, 
+os funcionários do sector público foram convidados a avaliar o seu nível de 
+de satisfação com o departamento em que trabalham. 
+Os resultados revelaram que a NASA era o departamento mais popular 
+com um índice de satisfação de 95%.
+
+Um funcionário da NASA, John Smith, comentou os resultados, 
+afirmando: 'Não me surpreende que a NASA tenha ficado em primeiro lugar. 
+É um ótimo lugar para trabalhar, com pessoas fantásticas e 
+e oportunidades incríveis. Tenho orgulho em fazer parte de 
+uma organização tão inovadora.'
+
+Os resultados também foram bem recebidos pela equipa de gestão da NASA, 
+com o Diretor Tom Johnson a declarar: 'Estamos entusiasmados por 
+ouvir que os nossos funcionários estão satisfeitos com o seu trabalho na NASA. 
+Temos uma equipa talentosa e dedicada que trabalha incansavelmente 
+para atingir os nossos objectivos, e é fantástico ver que o seu 
+trabalho árduo está a dar frutos'.
+
+O inquérito revelou também que a 
+Administração da Segurança Social registou o índice de satisfação mais baixo 
+com apenas 45% dos empregados indicando que estavam 
+satisfeitos com o seu trabalho. O Governo comprometeu-se a 
+abordar as preocupações levantadas pelos funcionários no inquérito e 
+trabalhar no sentido de melhorar a satisfação profissional em todos os departamentos.
+"
+
+```
+
+inferir 5 tópicos
+
+```{r, in7}
+#| eval: false
+
+prompt5 <- paste("Determina 5 tópicos que estão a ser discutidos no texto seguinte 
+que está delimitado por plicas triplas.
+Cada tópico deve ter apenas uma ou duas palavras.
+Formata a tua resposta numa lista de tópicos separados por virgulas.
+
+                 Texto: ''' ", estoria, "'''")
+
+resposta <- get_completion(prompt5)
+
+resposta
+
+```
+
+## Alertas
+
+Fazer alertas para determinados tópicos
+
+```{r, in8}
+#| eval: false
+
+topicos <- unlist(strsplit(resposta,",")) |> trimws()
+
+if( 'NASA' %in% topicos) print('ALERT: notícias da NASA!')
+
+```
+
