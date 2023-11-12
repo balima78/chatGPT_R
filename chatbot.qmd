@@ -3,7 +3,7 @@
 
 Vamos explorar o formato chat para conversar com chatbots personalizados ou especializados em certos temas ou comportamentos.
 
-A função `` do *package* {openai} permite ter este tipo de diálogos.
+A função `create_chat_completion` do *package* {openai} permite ter este tipo de diálogos.
 
 ```{r, c1}
 #| eval: false
@@ -99,15 +99,10 @@ res$choices$message.content
 
 Agora o modelo já sabe responder.
 
-```{r, c3}
+```{r, c4}
 #| eval: false
 
-res <- create_chat_completion(
-   model = "gpt-3.5-turbo",
-   messages = list(
-       list(
-           "role" = "system",
-           "content" = "Tu és o OrderBot, um serviço automatizado que regista os pedidos e 
+instrucao <- "Tu és o OrderBot, um serviço automatizado que regista os pedidos e 
            depois pergunta onde é a entrega. Recebes o pedido inteiro depois fazes 
            o seu resumo e dizes qual é o preço. O menu inclui: pizza peperoni: 10€;
            pizza de queijo: 9€;
@@ -116,6 +111,13 @@ res <- create_chat_completion(
            salada: 4€
            molho: 2€
            bebida: 7€"
+
+res <- create_chat_completion(
+   model = "gpt-3.5-turbo",
+   messages = list(
+       list(
+           "role" = "system",
+           "content" = instrucao
        ),
        list(
            "role" = "user",
@@ -133,5 +135,38 @@ res <- create_chat_completion(
 )
 
 res$choices$message.content
+```
+
+Podemos usar o package [{OpenAIR}](https://openair-lib.org/) para termos um chatbot à nossa medida e com o qual possamos interatuar.
+
+```{r, c5}
+#| eval: false
+
+library(devtools)
+devtools::install_github("umatter/OpenAIR")
+
+library("TheOpenAIR")
+
+chat(instrucao)
+
+chat("eu não fiz esse pedido. Quero fazer um pedido novo")
+
+chat("quero uma pizza de queijo com salada, molho e duas bebidas")
+
+```
+
+
+Este package permitemos fazer coisas tão simples como *RegExp* através de comandos escritos
+
+```{r, c6}
+#| eval: false
+
+
+resp <- "Remove todos os numeros de '5XC-2a09ujnap9o2q0MP'
+a tua resposta deverá ter apenas os caracteres que sobram" %c%
+  "message" 
+
+resp
+
 ```
 

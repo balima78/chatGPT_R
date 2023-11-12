@@ -32,7 +32,7 @@ resposta
 ```{r, t3}
 #| eval: false
 
-prompt2 <- "Traduz o seguinte texto para espanhol, 
+prompt2 <- "Traduz o seguinte texto para espanhol e 
 italiano e ingles de pirata: '''Quero encomendar uma bola de basketball.''' "
 
 resposta <- get_completion(prompt2)
@@ -41,7 +41,7 @@ resposta
 
 ```
 
-Tradução de múltiplas frases em diferente línguas.
+Tradução de múltiplas frases em diferentes línguas.
 
 ```{r, t4}
 #| eval: false
@@ -80,6 +80,7 @@ resposta <- get_completion(prompt4)
 resposta
 
 ```
+
 ## Conversão de formato
 
 ```{r, t6}
@@ -118,7 +119,7 @@ for(i in 1:length(frases)){
 ```
 
 
-```{r, t7}
+```{r, t8}
 #| eval: false
 
 texto <- "Comprei isto para a minha filha no seu aniversário, porque ela está sempre a tirar

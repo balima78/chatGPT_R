@@ -3,7 +3,7 @@
 
 #install.packages("openai")
 Sys.setenv(
-  OPENAI_API_KEY = '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'
+  OPENAI_API_KEY = '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'
   )
 
 library(openai)
@@ -38,6 +38,8 @@ more detailed and relevant outputs.
 prompt0 <-  paste("Summarize the text delimited by triple backticks
                  into a single sentence. ```", text, "```")
 
+
 get_completion(prompt0, temperature = 0)
+
 
 

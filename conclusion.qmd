@@ -1,1 +1,24 @@
 # Conclusion
+
+A utilização do *chatGPT* em modo de desenvolvimento com o R permite explorar novos horizontes.
+
+A apreenção destes conceitos mais básicos que aqui foram apresentados, é um ponto de partida para uma utilização mais exaustiva desta nova ferramenta.
+
+São já muitos os *packages* relacionados que podemos encontrar no CRAN:
+
+*package* | descrição
+----- | -----
+[chatAI4R](https://cran.r-project.org/web/packages/chatAI4R/index.html)	| Chat-Based Interactive Artificial Intelligence for R
+[chatgpt](https://cran.r-project.org/web/packages/chatgpt/index.html)	| Interface to 'ChatGPT' from R
+[openai](https://cran.r-project.org/web/packages/openai/)	| R Wrapper for OpenAI API
+
+ou outros disponíveis através do github:
+
+*package* | descrição
+----- | -----
+[TheOpenAIR](https://openair-lib.org/)	| Integrate 'OpenAI' Large Language Models into Your 'R' Workflows
+[chattr](https://mlverse.github.io/chattr/) | It enables interaction with LLM directly from the RStudio IDE
+
+Certamente que estas listas irão aumentar à medida das necessidades dos utilizadores de R.
+
+

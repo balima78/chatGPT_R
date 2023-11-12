@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.9.16">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>ChatGPT com R - 1&nbsp; Prefácio</title>
+  <title>ChatGPT com R - 6&nbsp; Transforming</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -83,8 +83,8 @@
   <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
   <script src="site_libs/quarto-search/fuse.min.js"></script>
   <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./guidelines.html" rel="next">
-  <link href="./index.html" rel="prev">
+  <link href="./expanding.html" rel="next">
+  <link href="./inferring.html" rel="prev">
   <script src="site_libs/quarto-html/quarto.js"></script>
   <script src="site_libs/quarto-html/popper.min.js"></script>
   <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -120,12 +120,12 @@
   <![endif]-->
   <link rel="stylesheet" href="epub.css">
 </head>
-<body class="floating fullcontent">
+<body class="floating">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefácio</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transforming</span></h1>
       <button type="button" class="quarto-btn-toggle btn">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -189,7 +189,7 @@
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefácio</span></a>
+  <a href="./preface.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefácio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -214,7 +214,7 @@
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transforming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transforming</span></a>
+  <a href="./transforming.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transforming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -241,28 +241,129 @@
     </div>
 </nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#tradução" class="nav-link active" data-scroll-target="#tradução"> <span class="header-section-number">6.1</span> Tradução</a></li>
+<li><a href="#modificação-do-tom" class="nav-link" data-scroll-target="#modificação-do-tom"> <span class="header-section-number">6.2</span> Modificação do tom</a></li>
+<li><a href="#conversão-de-formato" class="nav-link" data-scroll-target="#conversão-de-formato"> <span class="header-section-number">6.3</span> Conversão de formato</a></li>
+<li><a href="#correcçaõ-ortográfica" class="nav-link" data-scroll-target="#correcçaõ-ortográfica"> <span class="header-section-number">6.4</span> Correcçaõ ortográfica</a></li>
+</ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/balima78/chatGPT_R/edit/main/transforming.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <header id="title-block-header">
-<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefácio</span></h1>
+<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transforming</span></h1>
 </header>
-<p>Este tutorial tem por base o MOOC <a href="https://learn.deeplearning.ai/">ChatGPT Prompt Engineering for Developers</a>.</p>
-<p>As instruções que naquele <em>short course</em> são apresentadas com exemplos em <em>python</em>, aqui são replicadas com recurso à linguagem <strong>R</strong>.</p>
-<p>O <em>package</em> <a href="https://cloud.r-project.org/web/packages/openai/index.html">{openai}</a> é usado para o R aceder à API do chatGPT e obter as respontas pretendidas.</p>
-<p>Antes de mais temos de definir a nossa chave API dada pelo OpenAI tal como descrito no sitio do <a href="https://irudnyts.github.io/openai/">openai</a>:</p>
+
+<p>Um LLM pode também ser usado para em tarefas de transformação de texto, como sejam a tradução, correcção gramatical, ajustar o tom e converter formatos.</p>
+<section id="tradução" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="tradução"><span class="header-section-number">6.1</span> Tradução</h2>
+<p>O chatGPT está treinado com fontes de muitas línguas diferentes. Isto permite ao modelo fazer traduções.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">OPENAI_API_KEY =</span> <span class="st">'sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>prompt0 <span class="ot">&lt;-</span> <span class="st">"Traduz o seguinte texto para italiano: ''' Olá, eu gostava de comprar um triturador. '''"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt0)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>resposta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Podemos deferir dois tipos de de <em>Large Language Models</em> (LLM):</p>
-<ul>
-<li><p>Base LLM - prevê a próxima palavra, tem por base texto como dados de treino;</p></li>
-<li><p>Instruction Tuned LLM - Tenta seguir instruções, <em>fine-tune</em> com instruções e em tentativas bem sucedidas no seguimento dessas instruções. <em>Reinforcement Learning with Human Feedback</em> (RLHF)</p></li>
-</ul>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prompt1 <span class="ot">&lt;-</span> <span class="st">"Diz-me em que linguagem está isto: 'Combien coûte le lampadaire?' "</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt1)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>resposta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prompt2 <span class="ot">&lt;-</span> <span class="st">"Traduz o seguinte texto para espanhol e </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">italiano e ingles de pirata: '''Quero encomendar uma bola de basketball.''' "</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt2)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>resposta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Tradução de múltiplas frases em diferentes línguas.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mensagens <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"La performance du système est plus lente que d'habitude."</span>,  </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Mi monitor tiene píxeles que no se iluminan."</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Il mio mouse non funziona"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Mój klawisz Ctrl jest zepsuty"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">"我的屏幕在闪烁"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span> <span class="fu">length</span>(mensagens)){</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  prompt3 <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Numa só palavra, diz-me em que lingua está a frase:"</span>, mensagens[i])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  lingua <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt3)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(<span class="fu">paste</span>(<span class="st">"traduz para português:"</span>, mensagens[i]))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"A língua original é:"</span>, lingua,<span class="st">".</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">"A tradução é:"</span>, resposta))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="modificação-do-tom" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="modificação-do-tom"><span class="header-section-number">6.2</span> Modificação do tom</h2>
+<p>De acordo com a nossa audiência podemos definir o nosso tom.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>frase <span class="ot">&lt;-</span> <span class="st">"Mano, este é o Zé, tipo vê só as cenas desta lamparina!"</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>prompt4 <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Traduz a frase do calão para uma linguagem formal de negócio:"</span>, frase)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt4)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>resposta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conversão-de-formato" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="conversão-de-formato"><span class="header-section-number">6.3</span> Conversão de formato</h2>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">'Sérgio'</span>,<span class="st">'Bruno'</span>,<span class="st">'José'</span>),</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">email =</span> <span class="fu">c</span>(<span class="st">'sergio.cenas@gmail.com'</span>,<span class="st">'b2578@gmail.com'</span>,<span class="st">'zedecima@gmail.com'</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>prompt5 <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Traduz o data.frame para uma tabela HTML:"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                df)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt5)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>resposta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="correcçaõ-ortográfica" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="correcçaõ-ortográfica"><span class="header-section-number">6.4</span> Correcçaõ ortográfica</h2>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>frases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'A rapariga com os caes brancos e pretos ter uma bola.'</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">'A Yolanda tem o seu caderno.'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Foi ser um dia longo. À peixe para jantar.'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Esta tem erros gramalticais.'</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Descancar é muito mais melhor bom.'</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(frases)){</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  prompt6 <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Corrige a frase entre plicas triplas e reescreve-a de forma correcta. </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">                 Se não houver nenhum erro apenas devolve: 'Não encontrei erros!': '''"</span>, frases[i], <span class="st">"'''"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt6)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Frase"</span>, i, <span class="st">":"</span>, resposta))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>texto <span class="ot">&lt;-</span> <span class="st">"Comprei isto para a minha filha no seu aniversário, porque ela está sempre a tirar</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">os meus do meu quarto.  Sim, os adultos também gostam de pandas.  Ela leva-o</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">para todo o lado com ela, porque é super macio e giro.  Uma das orelhas  </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">é um pouco mais pequena do que a outra, e acho que não foi feito para ser assimétrico. </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">É um pouco pequeno para o que paguei por ele. No entanto, penso que pode haver outras opções que sejam maiores pelo o mesmo preço.  Chegou um dia antes do previsto, por isso pude brincar com ele antes de o dar à minha filha."</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>prompt7 <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Reve e corrige a revisão que está entre plicas triplas. Torna-a mais convincente.</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">                 Assegura que segue o guia de estilo APA e que se destina a um leitor avançado. </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">                 O output deve estar em formato markdown: ''' "</span>, texto, <span class="st">"'''"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>resposta <span class="ot">&lt;-</span> <span class="fu">get_completion</span>(prompt7)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>resposta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 </main> <!-- /main -->
 <script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -439,13 +540,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Um simples tutorial</span>
+      <a href="./inferring.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inferring</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./guidelines.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Guidelines</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./expanding.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Expanding</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
