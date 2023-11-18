@@ -90,7 +90,7 @@ resposta
 
 ## Problema 2: o texto foca os detalhes errados
 
-+ pedir para fiocar nos aspecvtos relevantes para a audiência
++ pedir para focar nos aspectos relevantes para a audiência
 
 ```{r, it3}
 #| eval: false
@@ -161,7 +161,7 @@ Na segunda coluna incluir as medidas apenas em centimetros.
 
 Dá à tabela o título 'Dimensões do produto'.
 
-Formata tudocomo HTML para que possa ser usado num website.
+Formata tudo como HTML para que possa ser usado num website.
 Coloca a descrição num elemento <div>.
 
 Especificações técnicas: ''' ", ficha_produto, "''' ")

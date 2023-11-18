@@ -50,7 +50,7 @@ resposta
 ```{r, in3}
 #| eval: false
 
-prompt2 <- paste("O escritor da seguinte revisão está com raiva?. 
+prompt2 <- paste("O escritor da seguinte revisão está com raiva? 
 A  revisão está delimitada por plicas triplas. A tua resposta deve ser: sim ou não.
                  Revisão: ''' ", rev_lamp, "'''")
 

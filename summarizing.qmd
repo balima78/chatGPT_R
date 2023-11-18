@@ -56,7 +56,7 @@ resposta
 
 ```
 
-+ o resumo inclui topicos que não estão relacionados copm o focos definido.
++ o resumo inclui tópicos que não estão relacionados com o focos definido.
 
 Vamos tentar 'extrair' em vez de 'resumir'
 
@@ -72,7 +72,7 @@ resposta <- get_completion(prompt3)
 resposta
 ```
 
-Resumir multiplas revisões
+Resumir múltiplas revisões
 
 ```{r, s5}
 #| eval: false

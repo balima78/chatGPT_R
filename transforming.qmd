@@ -97,7 +97,7 @@ resposta
 
 ```
 
-## Correcçaõ ortográfica
+## Correcção ortográfica
 
 ```{r, t7}
 #| eval: false
