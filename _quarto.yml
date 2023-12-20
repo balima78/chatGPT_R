@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: docs
 
 book:
   title: "ChatGPT com R"
@@ -7,6 +8,7 @@ book:
   date: "2023-10-29"
   search: true
   repo-url: "https://github.com/balima78/chatGPT_R"
+  issue-url: "https://github.com/balima78/chatGPT_R/issues/new/choose"
   repo-actions: [edit]
   sharing: [twitter, facebook]
   downloads: [pdf, epub]
